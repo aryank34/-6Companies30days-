@@ -1,0 +1,30 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack <Integer> stack = new Stack<>();
+        String operators = "+-*/";
+
+        for(String s : tokens) {
+            if(operators.contains(s) && !stack.isEmpty()) {
+                int a = stack.pop();
+                int b = stack.pop();
+                int ans = work(a,s,b);
+                stack.push(ans);
+            } else {
+                stack.push(Integer.parseInt(s));
+            }
+        }
+        return stack.pop();
+    }
+
+    public int work(int a, String s, int b) {
+        switch(s) {
+            case "+": return a+b;
+            case "-": return b-a;
+            case "*": return b*a;
+            case "/": return b/a;
+        }
+        return 0;
+    }
+}
+
+link: https://drive.google.com/file/d/1i3A4zboKFcVnAigJ55zZyheIUoxMUBx9/view?usp=share_link
