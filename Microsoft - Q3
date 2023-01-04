@@ -1,0 +1,27 @@
+Q3. Bulls and Cows
+
+CODE:
+class Solution {
+    public String getHint(String secret, String guess) {
+        int [] secretFre = new int[10];
+        int [] guessFre = new int [10];
+
+        int bulls = 0,cows = 0;
+
+        for(int i=0;i<secret.length();i++) {
+            if(secret.charAt(i) == guess.charAt(i)) {
+                bulls++;
+            } else {
+                secretFre[secret.charAt(i)-'0']++; //they give ASCII value and subtract those.
+                guessFre[guess.charAt(i)-'0']++;
+            }
+        }
+
+        for(int i=0;i<10;i++) {
+            cows += Math.min(secretFre[i], guessFre[i]);
+        }
+        return (bulls+"A"+cows+"B");
+    }
+}
+
+Link: https://drive.google.com/file/d/1-6Alh5808G7UjpVZMwPXWleGf9Tw4qCy/view?usp=share_link
